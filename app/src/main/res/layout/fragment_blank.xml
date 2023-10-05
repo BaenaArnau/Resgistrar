@@ -2,34 +2,75 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"
+    android:background="#f4f4f4">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ic_launcher_round"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"/>
 
     <EditText
         android:id="@+id/nombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nombre"/>
+        android:layout_marginBottom="8dp"
+        android:hint="Nombre"
+        android:inputType="textCapWords"
+        android:background="#ffffff"/>
+
     <EditText
         android:id="@+id/apellidos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Apellidos"/>
+        android:layout_marginBottom="8dp"
+        android:hint="Apellidos"
+        android:inputType="textCapWords"
+        android:background="#ffffff"/>
+
     <EditText
-        android:id="@+id/usuario"
+        android:id="@+id/nickname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nickname"/>
+        android:layout_marginBottom="8dp"
+        android:hint="Nickname"
+        android:background="#ffffff"/>
+
     <EditText
-        android:id="@+id/mail"
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:hint="Contraseña"
+        android:background="#ffffff"/>
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:hint="Mail"/>
+        android:hint="Email"
+        android:background="#ffffff"/>
+
     <Button
-        android:id="@+id/registrase"
-        android:layout_width="match_parent"
+        android:id="@+id/registrarse"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registrarse"/>
+        android:text="Registrarse"
+        android:background="#4285F4"
+        android:textColor="#ffffff"/>
+    <TextView
+        android:id="@+id/cuota"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

@@ -25,6 +25,17 @@ public class BlankFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        binding.registrarse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Registrador registrador = new Registrador();
+                String nombre = binding.nombre.getText().toString();
+                String apellidos = binding.apellidos.getText().toString();
+                String nickname = binding.nickname.getText().toString();
+                String contraseña = binding.password.getText().toString();
+            }
+        });
     }
+
 
 }

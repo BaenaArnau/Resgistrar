@@ -69,7 +69,7 @@
         android:background="#4285F4"
         android:textColor="#ffffff"/>
     <TextView
-        android:id="@+id/cuota"
+        android:id="@+id/registrado"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

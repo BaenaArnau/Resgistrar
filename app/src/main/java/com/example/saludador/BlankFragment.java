@@ -31,8 +31,14 @@ public class BlankFragment extends Fragment {
                 Registrador registrador = new Registrador();
                 String nombre = binding.nombre.getText().toString();
                 String apellidos = binding.apellidos.getText().toString();
-                String nickname = binding.nickname.getText().toString();
                 String contraseña = binding.password.getText().toString();
+                String nickname = binding.nickname.getText().toString();
+                String gmail = binding.email.getText().toString();
+
+                Registrador.Solicitud solicitud = new Registrador.Solicitud(nombre,apellidos,contraseña,nickname,gmail);
+                String registrado = registrador.registro(solicitud);
+
+                binding.registrado.setText(String.format(registrado));
             }
         });
     }

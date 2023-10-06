@@ -12,11 +12,12 @@ public class Registrador {
             this.gmail = gmail;
         }
 
-        public String registro(Solicitud solicitud){
-            try {
-                Thread.sleep(2500);
-            } catch (InterruptedException e) {}
-            return "El usuario " + solicitud.nickname + " llamado " + solicitud.nombre + " " + solicitud.apellido + " a sido creado con el siguiente correo: " + solicitud.gmail + "\nCon una contraselña de " + solicitud.contraseña.length();
-        }
+
+    }
+    public String registro(Solicitud solicitud){
+        try {
+            Thread.sleep(2500);
+        } catch (InterruptedException e) {}
+        return "El usuario " + solicitud.nickname + " llamado " + solicitud.nombre + " " + solicitud.apellido + " a sido creado con el siguiente correo: " + solicitud.gmail + "\nCon una contraseña de " + solicitud.contraseña.length() + " digitos";
     }
 }

@@ -1,5 +1,7 @@
 package com.example.saludador;
 
+import android.net.SocketKeepalive;
+
 public class Registrador {
     public static class Solicitud{
         public String nombre, apellido, contraseña, nickname, gmail;
@@ -12,12 +14,18 @@ public class Registrador {
             this.gmail = gmail;
         }
 
-
     }
-    public String registro(Solicitud solicitud){
+    interface Callback {
+        void cuandoEsteElRegistro(String registro);
+        void cuandoEmpieceElCalculo();
+        void cuandoFinaliceElCalculo();
+    }
+    public void registro(Solicitud solicitud, Callback callback){
+        callback.cuandoEmpieceElCalculo();
         try {
             Thread.sleep(2500);
         } catch (InterruptedException e) {}
-        return "El usuario " + solicitud.nickname + " llamado " + solicitud.nombre + " " + solicitud.apellido + " a sido creado con el siguiente correo: " + solicitud.gmail + "\nCon una contraseña de " + solicitud.contraseña.length() + " digitos";
+        callback.cuandoEsteElRegistro("El usuario " + solicitud.nickname + " llamado " + solicitud.nombre + " " + solicitud.apellido + " a sido creado con el siguiente correo: " + solicitud.gmail + "\nCon una contraseña de " + solicitud.contraseña.length() + " digitos");
+        callback.cuandoFinaliceElCalculo();
     }
 }

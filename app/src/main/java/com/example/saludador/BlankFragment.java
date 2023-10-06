@@ -4,7 +4,10 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,20 +28,65 @@ public class BlankFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        final RegistradorViewModel registradorViewModel = new ViewModelProvider(this).get(RegistradorViewModel.class);
         binding.registrarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Registrador registrador = new Registrador();
+                boolean error = false;
                 String nombre = binding.nombre.getText().toString();
                 String apellidos = binding.apellidos.getText().toString();
                 String contraseña = binding.password.getText().toString();
                 String nickname = binding.nickname.getText().toString();
                 String gmail = binding.email.getText().toString();
 
-                Registrador.Solicitud solicitud = new Registrador.Solicitud(nombre,apellidos,contraseña,nickname,gmail);
-                String registrado = registrador.registro(solicitud);
+                if (TextUtils.isEmpty(nombre)) {
+                    binding.nombre.setError("No se pueden dejar campos vacíos");
+                    error = true;
+                }
 
-                binding.registrado.setText(String.format(registrado));
+                if (TextUtils.isEmpty(apellidos)) {
+                    binding.apellidos.setError("No se pueden dejar campos vacíos");
+                    error = true;
+                }
+
+                if (TextUtils.isEmpty(contraseña)) {
+                    binding.password.setError("No se pueden dejar campos vacíos");
+                    error = true;
+                }
+
+                if (TextUtils.isEmpty(nickname)) {
+                    binding.nickname.setError("No se pueden dejar campos vacíos");
+                    error = true;
+                }
+
+                if (TextUtils.isEmpty(gmail)) {
+                    binding.email.setError("No se pueden dejar campos vacíos");
+                    error = true;
+                }
+
+                if (!error){
+                    registradorViewModel.registro(nombre, apellidos, contraseña, nickname, gmail);
+                }
+            }
+        });
+
+        registradorViewModel.registro.observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String registro) {
+                binding.registrado.setText(String.format(registro));
+            }
+        });
+
+        registradorViewModel.calculando.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean calculando) {
+                if (calculando) {
+                    binding.calculando.setVisibility(View.VISIBLE);
+                    binding.registrado.setVisibility(View.GONE);
+                } else {
+                    binding.calculando.setVisibility(View.GONE);
+                    binding.registrado.setVisibility(View.VISIBLE);
+                }
             }
         });
     }

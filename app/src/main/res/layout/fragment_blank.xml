@@ -68,9 +68,20 @@
         android:text="Registrarse"
         android:background="#4285F4"
         android:textColor="#ffffff"/>
-    <TextView
-        android:id="@+id/registrado"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/registrado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"/>
+        <ProgressBar
+            android:id="@+id/calculando"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:gravity="center"/>
+    </FrameLayout>
 
 </LinearLayout>

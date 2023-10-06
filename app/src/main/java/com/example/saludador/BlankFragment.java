@@ -52,6 +52,9 @@ public class BlankFragment extends Fragment {
                 if (TextUtils.isEmpty(contraseña)) {
                     binding.password.setError("No se pueden dejar campos vacíos");
                     error = true;
+                } else if (!validarContraseña(contraseña)) {
+                    binding.password.setError("La contraseña debe contener al menos una mayúscula, una minúscula, un símbolo y un número");
+                    error = true;
                 }
 
                 if (TextUtils.isEmpty(nickname)) {
@@ -61,6 +64,9 @@ public class BlankFragment extends Fragment {
 
                 if (TextUtils.isEmpty(gmail)) {
                     binding.email.setError("No se pueden dejar campos vacíos");
+                    error = true;
+                } else if (!gmail.contains("@")) {
+                    binding.email.setError("Introduzca una dirección de correo electrónico válida");
                     error = true;
                 }
 
@@ -91,5 +97,8 @@ public class BlankFragment extends Fragment {
         });
     }
 
-
+    private boolean validarContraseña(String contraseña) {
+        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$";
+        return contraseña.matches(regex);
+    }
 }
